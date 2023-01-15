@@ -52,7 +52,8 @@ nextjs:
 
 # Start Django dev server
 django:
-> echo "Django"
+> cd api/datadash
+> poetry run python manage.py runserver
 
 
 
