@@ -1,43 +1,62 @@
 # kbsb-dashboard
 
-A data dashboard built with React, Django and ApexCharts
+A data dashboard demo built with React, Django and ApexCharts.
 
 ---------------------------------------------------------
 
-## Set up a NodeJS Docker container
+## Build instructions with Make
+
+> Note: you need Docker and Podman as host OS dependencies
 
 ```sh
-# with podman
-podman run -d -it --entrypoint /bin/sh -p 3000:3000 --mount type=bind,source="$(pwd)",target=/src node:18-alpine
-podman ps
-podman attach <CONTAINER_NAME>
-```
+# build the Docker images from the Dockerfile with Make
+make images
 
-### node:18-alpine
+# run Python development containers
+make python5000
+make django # from container
 
-```sh
-# add Alpine make package
-apk add make
+# run Node dev container
+make node3000
+make nextjs # from container
 
-# aliasses for Alpine
-alias ll="ls -la" && alias l="ls -la"
+# run containers with port mapping
+make node
+make python
 ```
 
 ---------------------------------------------------------
 
-## Set up a Python Docker container
+## Manually run the containers
+
+- [ ] Todo: Add `docker-compose.yml`
+
+```yaml
+services:
+  frontend:
+    image: kbsb-dashboard-node
+  backend:
+    image: kbsb-dashboard-python
+```
+
+### Node container
 
 ```sh
 # with podman
-podman run -d -it --entrypoint /bin/bash -p 5000:5000 --mount type=bind,source="$(pwd)",target=/src python:3.11.1-slim-bullseye
-podman ps
-podman attach <CONTAINER_NAME>
+podman run -it --entrypoint /bin/sh --mount type=bind,source="$(pwd)",target=/src kbsb-dashboard-node
+# with ports mounted
+podman run -it --entrypoint /bin/sh -p 3000:3000 --mount type=bind,source="$(pwd)",target=/src kbsb-dashboard-node
+# detached, with ports mounted
+podman run -d -it --entrypoint /bin/sh -p 3000:3000 --mount type=bind,source="$(pwd)",target=/src kbsb-dashboard-node
 ```
 
-### python:3.11.1-slim-bullseye
+### Python container
 
 ```sh
-# add Ubuntu packages
-apt update
-apt install -y make curl unzip
+# run with podman
+podman run -it --entrypoint /bin/bash --mount type=bind,source="$(pwd)",target=/src kbsb-dashboard-python
+# with ports mounted
+podman run -it --entrypoint /bin/bash -p 5000:5000 --mount type=bind,source="$(pwd)",target=/src kbsb-dashboard-python
+# detached, with ports mounted
+podman run -d -it --entrypoint /bin/bash -p 5000:5000 --mount type=bind,source="$(pwd)",target=/src kbsb-dashboard-python
 ```
