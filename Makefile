@@ -47,7 +47,8 @@ endif
 # Start NextJS dev server
 nextjs:
 > cd app
-> npm install && npm run dev
+> npm install
+> npm run dev
 
 # Start Django dev server
 django:
