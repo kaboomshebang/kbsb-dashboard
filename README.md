@@ -13,14 +13,14 @@ A data dashboard demo built with React, Django and ApexCharts.
 make images
 
 # run Python development containers
-make python5000
-make django # from container
+make python8000
+make django # from inside container /src
 
 # run Node dev container
 make node3000
-make nextjs # from container
+make nextjs # from inside container /src
 
-# run containers with port mapping
+# run containers without port mapping
 make node
 make python
 ```
@@ -56,7 +56,7 @@ podman run -d -it --entrypoint /bin/sh -p 3000:3000 --mount type=bind,source="$(
 # run with podman
 podman run -it --entrypoint /bin/bash --mount type=bind,source="$(pwd)",target=/src kbsb-dashboard-python
 # with ports mounted
-podman run -it --entrypoint /bin/bash -p 5000:5000 --mount type=bind,source="$(pwd)",target=/src kbsb-dashboard-python
+podman run -it --entrypoint /bin/bash -p 8000:8000 --mount type=bind,source="$(pwd)",target=/src kbsb-dashboard-python
 # detached, with ports mounted
-podman run -d -it --entrypoint /bin/bash -p 5000:5000 --mount type=bind,source="$(pwd)",target=/src kbsb-dashboard-python
+podman run -d -it --entrypoint /bin/bash -p 8000:8000 --mount type=bind,source="$(pwd)",target=/src kbsb-dashboard-python
 ```

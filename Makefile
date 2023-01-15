@@ -91,5 +91,5 @@ node3000:
 python:
 > podman run -it --entrypoint /bin/bash --mount type=bind,source="$$(pwd)",target=/src kbsb-dashboard-python
 # with ports
-python5000:
-> podman run -it --entrypoint /bin/bash -p 5000:5000 --mount type=bind,source="$$(pwd)",target=/src kbsb-dashboard-python
+python8000:
+> podman run -it --entrypoint /bin/bash -p 8000:8000 --mount type=bind,source="$$(pwd)",target=/src kbsb-dashboard-python
