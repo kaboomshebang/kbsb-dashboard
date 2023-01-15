@@ -52,8 +52,9 @@ nextjs:
 
 # Start Django dev server
 django:
-> cd api/datadash
-> poetry run python manage.py runserver
+> cd api
+> poetry install
+> poetry run python datadash/manage.py runserver 0.0.0.0:8000
 
 
 
