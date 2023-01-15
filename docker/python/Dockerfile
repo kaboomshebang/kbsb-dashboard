@@ -11,6 +11,9 @@ RUN curl -sSL https://install.python-poetry.org | python -
 # add Poetry bin directory to path
 ENV PATH="/root/.local/bin:$PATH"
 
+# store virtual environments inside project directory
+RUN poetry config virtualenvs.in-project true
+
 # add aliasses to Bash shell for terminal convenience
 RUN echo '\n# shell customization' >> $HOME/.bashrc
 RUN echo 'alias ll="ls -la"' >> $HOME/.bashrc
