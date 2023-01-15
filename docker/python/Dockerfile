@@ -12,9 +12,10 @@ RUN curl -sSL https://install.python-poetry.org | python -
 ENV PATH="/root/.local/bin:$PATH"
 
 # add aliasses to Bash shell for terminal convenience
-RUN echo '\n# alias for ls command' >> $HOME/.bashrc
+RUN echo '\n# shell customization' >> $HOME/.bashrc
 RUN echo 'alias ll="ls -la"' >> $HOME/.bashrc
 RUN echo 'alias l="ls -la"' >> $HOME/.bashrc
+RUN echo 'PS1="PyBox:\w > "' >> $HOME/.bashrc
 
 # change dir
 WORKDIR /src
