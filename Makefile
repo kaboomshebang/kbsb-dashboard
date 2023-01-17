@@ -84,14 +84,14 @@ images:
 
 # run and attach Node containers
 node:
-> podman run -it --entrypoint /bin/sh --mount type=bind,source="$$(pwd)",target=/src kbsb-dashboard-node
+> docker run -it --entrypoint /bin/sh --mount type=bind,source="$$(pwd)",target=/src kbsb-dashboard-node
 # with ports
 node3000:
-> podman run -it --entrypoint /bin/sh -p 3000:3000 --mount type=bind,source="$$(pwd)",target=/src kbsb-dashboard-node
+> docker run -it --entrypoint /bin/sh -p 3000:3000 --mount type=bind,source="$$(pwd)",target=/src kbsb-dashboard-node
 
 # run and attach Python containers
 python:
-> podman run -it --entrypoint /bin/bash --mount type=bind,source="$$(pwd)",target=/src kbsb-dashboard-python
+> docker run -it --entrypoint /bin/bash --mount type=bind,source="$$(pwd)",target=/src kbsb-dashboard-python
 # with ports
 python8000:
-> podman run -it --entrypoint /bin/bash -p 8000:8000 --mount type=bind,source="$$(pwd)",target=/src kbsb-dashboard-python
+> docker run -it --entrypoint /bin/bash -p 8000:8000 --mount type=bind,source="$$(pwd)",target=/src kbsb-dashboard-python
