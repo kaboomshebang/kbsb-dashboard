@@ -1,0 +1,33 @@
+# Debian based container
+FROM python:3.11.1-slim-bullseye
+
+# add Ubuntu packages
+RUN apt-get update && apt-get install -y make curl sudo unzip
+
+# install node v18.x LTS
+# https://github.com/nodesource/distributions
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+RUN apt-get install -y nodejs
+
+# fix mount/bind permission issues for development containers
+RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+USER docker
+
+# install Poetry
+RUN curl -sSL https://install.python-poetry.org | python -
+# add Poetry bin directory to path
+ENV PATH="/home/docker/.local/bin:$PATH"
+# do not use virtual environments stored inside project directory
+RUN poetry config virtualenvs.in-project false
+
+# add aliasses to Bash shell for terminal convenience
+RUN echo '\n# shell customization' >> $HOME/.bashrc
+RUN echo 'alias ll="ls -la"' >> $HOME/.bashrc
+RUN echo 'alias l="ls -la"' >> $HOME/.bashrc
+RUN echo 'PS1="\u:DevBox:\w > "' >> $HOME/.bashrc
+
+# change dir
+WORKDIR /src
+
+# open shell
+CMD /bin/bash
