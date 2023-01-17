@@ -10,7 +10,7 @@ A data dashboard demo built with React, Django and ApexCharts.
 
 ```sh
 # build the Docker images from the Dockerfile with Make
-make images
+make image
 # run dev container
 make run
 make django # from inside container /src
