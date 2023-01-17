@@ -64,10 +64,10 @@ django:
 
 # build Docker images with Podman
 images:
-> cd docker/python && podman build -t kbsb-dashboard-python .
+> cd docker/backend && docker build -t kbsb-dashboard-python .
 > cd ../..
 > echo "\nPython image created\n"
-> cd docker/nodejs && podman build -t kbsb-dashboard-node .
+> cd docker/frontend && docker build -t kbsb-dashboard-node .
 > echo "\nNode image created\n"
 
 ################# note: build images with Docker
