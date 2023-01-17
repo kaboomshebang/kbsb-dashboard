@@ -62,7 +62,7 @@ django:
 # BUILD DOCKER IMAGES
 ###############################################
 
-# build Docker images with Podman
+# build Docker images
 images:
 > cd docker/backend && docker build -t kbsb-dashboard-python .
 > cd ../..
@@ -70,17 +70,29 @@ images:
 > cd docker/frontend && docker build -t kbsb-dashboard-node .
 > echo "\nNode image created\n"
 
-################# note: build images with Docker
-# > cd docker/python && docker build -t kbsb-dashboard-python .
-# > cd docker/nodejs && docker build -t kbsb-dashboard-node .
+image:
+> cd docker && docker build -t kbsb-dashboard -f Dockerfile.dev .
 
 
 
 ###############################################
-# RUN DOCKER CONTAINERs
+# RUN DOCKER CONTAINERs (DEV)
 ###############################################
 
-################# note: escape shell variables with a double $ character
+################# note: in Makefiles escape shell variables with a double $ character
+
+run:
+> docker run -it --name kbsb-dashboard -p 8000:8000 -p 3000:3000 --mount type=bind,source="$$(pwd)",target=/src kbsb-dashboard
+
+shell:
+> docker exec -it kbsb-dashboard /bin/bash
+
+
+###############################################
+# RUN DOCKER CONTAINERs (PRODUCTION)
+###############################################
+
+############### todo: convert to Docker Compose
 
 # run and attach Node containers
 node:
