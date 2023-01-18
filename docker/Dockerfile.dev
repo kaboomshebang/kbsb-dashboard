@@ -12,6 +12,7 @@ RUN apt-get install -y nodejs
 # fix mount/bind permission issues for development containers
 RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 USER docker
+# uid=1000(docker) gid=1000(docker)
 
 # install Poetry
 RUN curl -sSL https://install.python-poetry.org | python -
