@@ -50,28 +50,32 @@ next:
 > npm install
 > npm run dev
 
+################################## DJANGO
+
 # Start Django dev server
 django:
 > @cd api
 > poetry install
 > poetry run python datadash/manage.py runserver 0.0.0.0:8000
 
-# make changes/migrations to the database
+# make all changes/migrations to the database
 migrations:
 > @cd api
 > poetry install
 > poetry run python datadash/manage.py makemigrations
+# specify migrations to make
 migrations-%:
 > @cd api
 > echo "Make migrations for $*"
 > poetry install
 > poetry run python datadash/manage.py makemigrations "$*"
 
-# apply migrations/changes to the database
+# apply all migrations/changes to the database
 migrate:
 > @cd api
 > poetry install
 > poetry run python datadash/manage.py migrate
+# specify migration to apply
 migrate-%:
 > @cd api
 > echo "Migrate $*"
