@@ -1,5 +1,5 @@
 ###############################################
-# MAKE CONFIG
+# MAKEFILE CONFIG
 ###############################################
 
 # https://www.linuxzen.com/notes/notes/20220822112621-your_makefiles_are_wrong/
@@ -41,25 +41,62 @@ endif
 
 
 ###############################################
-# TASKS
+# NEXT AND DJANGO TARGETS
 ###############################################
 
 # Start NextJS dev server
-nextjs:
-> cd app
+next:
+> @cd app
 > npm install
 > npm run dev
 
 # Start Django dev server
 django:
-> cd api
+> @cd api
 > poetry install
 > poetry run python datadash/manage.py runserver 0.0.0.0:8000
 
+# make changes/migrations to the database
+migrations:
+> @cd api
+> poetry install
+> poetry run python datadash/manage.py makemigrations
+migrations-%:
+> @cd api
+> echo "Make migrations for $*"
+> poetry install
+> poetry run python datadash/manage.py makemigrations "$*"
+
+# apply migrations/changes to the database
+migrate:
+> @cd api
+> poetry install
+> poetry run python datadash/manage.py migrate
+migrate-%:
+> @cd api
+> echo "Migrate $*"
+> poetry install
+> poetry run python datadash/manage.py migrate "$*"
+# wildcards: https://earthly.dev/blog/using-makefile-wildcards/
 
 
 ###############################################
-# BUILD DOCKER IMAGES
+# DOCKER DEV CONTAINER
+###############################################
+
+image:
+> cd docker && docker build -t kbsb-dashboard -f Dockerfile.dev .
+
+run:
+> docker run -it --name kbsb-dashboard -p 8000:8000 -p 3000:3000 --mount type=bind,source="$$(pwd)",target=/src kbsb-dashboard
+################# note: in Makefiles escape shell variables with a double $ character
+
+shell:
+> docker exec -it kbsb-dashboard /bin/bash
+
+
+###############################################
+# DOCKER PRODUCTION CONTAINERs
 ###############################################
 
 # build Docker images
@@ -69,28 +106,6 @@ images:
 > echo "\nPython image created\n"
 > cd docker/frontend && docker build -t kbsb-dashboard-node .
 > echo "\nNode image created\n"
-
-image:
-> cd docker && docker build -t kbsb-dashboard -f Dockerfile.dev .
-
-
-
-###############################################
-# RUN DOCKER CONTAINERs (DEV)
-###############################################
-
-################# note: in Makefiles escape shell variables with a double $ character
-
-run:
-> docker run -it --name kbsb-dashboard -p 8000:8000 -p 3000:3000 --mount type=bind,source="$$(pwd)",target=/src kbsb-dashboard
-
-shell:
-> docker exec -it kbsb-dashboard /bin/bash
-
-
-###############################################
-# RUN DOCKER CONTAINERs (PRODUCTION)
-###############################################
 
 ############### todo: convert to Docker Compose
 
