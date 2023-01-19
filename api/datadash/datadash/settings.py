@@ -55,7 +55,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "corsheaders.middleware.CorsMiddleWare",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "datadash.urls"
@@ -131,4 +131,7 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CORS_DEFAULT_WHITELIST = ["http://localhost:3000", "http://100.111.214.8:3000/"]
+CORS_DEFAULT_WHITELIST = [
+    "http://localhost:3000",
+    "http://100.111.214.8:3000/",
+]
