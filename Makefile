@@ -52,34 +52,35 @@ next:
 
 ################################## DJANGO
 
+# install Python dependencies
+poetry:
+> @cd api
+> poetry install
+# installs to /api/.venv on DEV HOST machine
+
 # Start Django dev server
 django:
 > @cd api
-> poetry install
 > poetry run python datadash/manage.py runserver 0.0.0.0:8000
 
 # make all changes/migrations to the database
 migrations:
 > @cd api
-> poetry install
 > poetry run python datadash/manage.py makemigrations
 # specify migrations to make
 migrations-%:
 > @cd api
 > echo "Make migrations for $*"
-> poetry install
 > poetry run python datadash/manage.py makemigrations "$*"
 
 # apply all migrations/changes to the database
 migrate:
 > @cd api
-> poetry install
 > poetry run python datadash/manage.py migrate
 # specify migration to apply
 migrate-%:
 > @cd api
 > echo "Migrate $*"
-> poetry install
 > poetry run python datadash/manage.py migrate "$*"
 # wildcards: https://earthly.dev/blog/using-makefile-wildcards/
 
