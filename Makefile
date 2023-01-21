@@ -41,11 +41,11 @@ endif
 
 
 ###############################################
-# NEXT AND DJANGO TARGETS
+# REACT AND DJANGO TARGETS
 ###############################################
 
-# Start NextJS dev server
-next:
+# Start Vite dev server
+react:
 > @cd app
 > npm install
 > npm run dev
