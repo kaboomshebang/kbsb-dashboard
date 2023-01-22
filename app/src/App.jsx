@@ -2,7 +2,7 @@ import { useState } from 'react';
 import reactLogo from './assets/kaboom_shebang_logo.svg';
 import './App.css';
 
-import { EuroDollar } from './components/EuroDollar';
+import { EuroDollar } from '@/components/EuroDollar';
 
 function App() {
 	return (
