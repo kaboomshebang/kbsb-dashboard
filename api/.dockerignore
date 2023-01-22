@@ -1,0 +1,8 @@
+# .dockerignore: tell Docker to exclude these files from the image build proces
+
+# flyctl launch added from .venv/.gitignore
+# created by virtualenv automatically
+.venv/**/*
+fly.toml
+.venv
+.venv/
