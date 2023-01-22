@@ -7,7 +7,7 @@ export const Header = () => {
 		<>
 			<Container maxWidth="lg" sx={{ mt: 20, mb: 10 }}>
 				<Typography component="h1" variant="h4" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-					KBSB Data Dashboard
+					kbsb-dashboard
 				</Typography>
 
 				<Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
