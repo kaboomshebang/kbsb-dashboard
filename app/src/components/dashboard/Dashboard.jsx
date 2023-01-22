@@ -1,7 +1,7 @@
 import { Container, Grid, Paper } from '@mui/material';
 
 // Charts examples
-import { EuroDollar } from '@/components/EuroDollar';
+import { EuroDollar } from '@/components/dashboard/apexcharts/EuroDollar';
 
 export const Dashboard = () => {
 	return (
