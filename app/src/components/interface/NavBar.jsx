@@ -1,33 +1,60 @@
 import { useState } from 'react';
-import { NavMenu } from './navMenu';
-import { ExternalLink } from './externalLink';
 
-const logoKaboom = new URL('../assets/svg/logo-kaboom.svg', import.meta.url);
-const iconBurger = new URL('../assets/svg/icon-burger.svg', import.meta.url);
+// TODO: add dropdown menu
+// import { NavMenu } from '@/components/interface/NavMenu';
+// import { ExternalLink } from '@/components/utils/ExternalLink';
+
+// MUI components
+import { Box } from '@mui/material';
+import { AppBar, Toolbar, IconButton } from '@mui/material';
+import { Typography } from '@mui/material';
+
+// MUI icons
+import MenuIcon from '@mui/icons-material/Menu';
+
+// assets
+import logoKaboom from '@/assets/kaboom_shebang_logo_white.svg';
 
 export const NavBar = () => {
 	const [menu, setMenu] = useState(false);
 
 	const handleClick = () => {
 		setMenu(!menu);
+		console.log('Clicked');
 	};
 
 	return (
-		<div id="navbar">
-			<div>
-				<h1>
-					<ExternalLink url="https://www.kaboomshebang.com">
-						<img src={logoKaboom.toString()} alt="Kaboom" />
-					</ExternalLink>
-				</h1>
-				<h2>
-					BPM Tempo Tapper <span className="nav-url">bpm.kbsb.app</span>
-				</h2>
-			</div>
-			<button onClick={handleClick}>
-				<img src={iconBurger.toString()} alt="Menu" />
-			</button>
-			<NavMenu menuState={menu} menuHandler={setMenu} />
-		</div>
+		<>
+			<AppBar>
+				<Toolbar>
+					<Box
+						component="img"
+						sx={{
+							marginRight: '1rem',
+							maxWidth: { xs: 200, md: 250 },
+						}}
+						alt="Kaboom"
+						src={logoKaboom}
+					/>
+					<Typography
+						component="h1"
+						variant="h6"
+						color="inherit"
+						noWrap
+						sx={{ flexGrow: 1 }}
+					>
+						Data Dashboard
+					</Typography>
+					<IconButton
+						edge="start"
+						color="inherit"
+						aria-label="open drawer"
+						onClick={handleClick}
+					>
+						<MenuIcon />
+					</IconButton>
+				</Toolbar>
+			</AppBar>
+		</>
 	);
 };
