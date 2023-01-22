@@ -9,7 +9,8 @@ import SendIcon from '@mui/icons-material/Send';
 // ApexCharts
 import Chart from 'react-apexcharts';
 
-const endpoint = 'http://100.111.214.8:8000/api/eurodollars/';
+// const endpoint = 'http://100.111.214.8:8000/api/eurodollars/';
+const endpoint = 'https://kbsb-dashboard.fly.dev/api/eurodollars/';
 
 export const EuroDollar = () => {
 	const [options, setOptions] = useState({});
