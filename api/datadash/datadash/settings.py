@@ -131,6 +131,9 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# TODO: disable allow all
+CORS_ORIGIN_ALLOW_ALL = True
+# TODO: fix the whitelist (did not work properly in local development)
 CORS_DEFAULT_WHITELIST = [
     "http://localhost:3000",
     "http://100.111.214.8:3000/",
