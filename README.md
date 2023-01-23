@@ -1,6 +1,10 @@
 # kbsb-dashboard
 
-A data dashboard demo built with React, Django and ApexCharts.
+A data dashboard demo built with React, Django and ApexCharts. 
+
+URLs:
+- [Frontend](https://kbsb-dashboard.vercel.app/)
+- [API](https://kbsb-dashboard.fly.dev/api/eurodollars/)
 
 ---------------------------------------------------------
 
@@ -16,6 +20,8 @@ make run
 make django # from inside container /src
 make nextjs # from inside container /src
 ```
+
+- [ ] Todo: verify the build instructions
 
 ## Deployment containers
 
